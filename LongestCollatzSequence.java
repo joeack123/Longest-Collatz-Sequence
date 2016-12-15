@@ -1,1 +1,5 @@
-//New Java File
+public class LongestCollatzSequence {
+        public static void main(String[] args) {
+                System.out.println("Hello world");
+        }
+}
