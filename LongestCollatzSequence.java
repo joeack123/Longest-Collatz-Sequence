@@ -1,3 +1,16 @@
+/*
+Collatz Sequence is a mathematical equation that states if 
+n is even take n / 2 and repeat till n is odd and when
+n is odd take n * 3 and add 1. Then this repeats till the 
+output is equal to 1. In my program it takes a user 
+inputed value and will run it through this process from 
+every number from 1 to the value inputed. After it finishes
+it outputs the value that took the longest time to execute
+and prints it out and the value that it was at as well as
+the time in milliseconds it took to reach that result.
+*/
+
+
 import java.util.Scanner;
 
 public class longestcollatzsequence {
@@ -10,12 +23,12 @@ public class longestcollatzsequence {
 			x = System.currentTimeMillis();
 			i = s.nextLong();
 			long arr[] = new long[50000000];
-			long al = arr.length;
+			long arrlng = arr.length;
 			for(j = 1; j <= i; j++) {
 				n = j;
 				counter = 0;
 				while(n != 1) {
-					if(n < al) {
+					if(n < arrlng) {
 						if(arr[(int) (n - 1)] != 0) {
 							counter = counter + arr[(int) (n - 1)];
 							break;
@@ -24,7 +37,7 @@ public class longestcollatzsequence {
 					n = ((n & 1) == 0 ? n / 2 : (3 * n) + 1);
 					counter++;
 				}
-				if(j < al)
+				if(j < arrlng)
 					arr[(int) (j - 1)] = counter;
 				if(counter > max) {
 					max = counter;
