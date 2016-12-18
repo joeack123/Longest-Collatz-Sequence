@@ -1,27 +1,41 @@
+import java.util.Scanner;
+
 public class longestcollatzsequence {
-	public static void main(String[] args) {
-		int n = 0;
-		int counter = 0;
-		long startTime = System.currentTimeMillis();
-		for(int i=1;i<=1000000;i++) {
-			n = i;
-			System.out.println(n+"\n");
-			while(n != 1) {
-				if(n % 2 == 0) {
-					n = (n / 2);
+	public static void main(String args[]) {
+		long i, j, n, max = 0, pos = 0, x, y;
+		long counter = 0;
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter the positive integer:");
+		while (s.hasNextLong()) {
+			x = System.currentTimeMillis();
+			i = s.nextLong();
+			long arr[] = new long[50000000];
+			long al = arr.length;
+			for(j = 1; j <= i; j++) {
+				n = j;
+				counter = 0;
+				while(n != 1) {
+					if(n < al) {
+						if(arr[(int) (n - 1)] != 0) {
+							counter = counter + arr[(int) (n - 1)];
+							break;
+						}
+					}
+					n = ((n & 1) == 0 ? n / 2 : (3 * n) + 1);
 					counter++;
-				} else if(n % 2 == 1) {
-					n = ((n*3)+1);
-					counter++;
-				} else if(n == -453213987) {
-					System.exit(0);
 				}
-				System.out.println(n + "-");
+				if(j < al)
+					arr[(int) (j - 1)] = counter;
+				if(counter > max) {
+					max = counter;
+					pos = j;
+				}
+				counter = 0;
 			}
-			System.out.println("\n" + counter +"--" + "\n");
-			long endTime   = System.currentTimeMillis();
-			long totalTime = (endTime - startTime);
-			System.out.println("\n" + totalTime + "---");
+			y = System.currentTimeMillis();
+			System.out.println("Maximum cycle length occurs at " + pos + " and the number of steps involved" + " " + max+ "\n Total time taken is " + (y - x) + " " + "milliseconds");
+			break;
 		}
+		s.close();
 	}
 }
